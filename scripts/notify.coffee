@@ -36,6 +36,10 @@ module.exports = (robot) ->
       .header("Authorization", "Basic #{auth}")
       .header("Content-Type", "application/x-www-form-urlencoded")
       .post(data) (err, res, body) ->
+        console.log 'message sent?'
+        console.log err
+        console.log res
+        console.log body
         if err
           console.log err
         else if res.statusCode is 201

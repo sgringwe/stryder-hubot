@@ -14,7 +14,7 @@
 #
 #
 # Author:
-#   benpink
+#   sgringwe
 
 jsdom = require 'jsdom'
 HTTP = require "http"

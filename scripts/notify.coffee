@@ -28,9 +28,9 @@ module.exports = (robot) ->
 
   @last_message = 0;
 
-  send_message = =>
+  send_message = (to) =>
     auth = new Buffer(@sid + ':' + @token).toString("base64")
-    data = QS.stringify From: @from, To: "+12314925380", Body: "You have a new message on stryder support"
+    data = QS.stringify From: @from, To: to, Body: "You have a new message on stryder support"
 
     @last_message = new Date();
     robot.http("https://api.twilio.com")
@@ -53,6 +53,8 @@ module.exports = (robot) ->
 
     console.log "Diff is #{minutes_since_last} minutes"
     if minutes_since_last > 15
-      send_message()
+      send_message("+12314925380")
+      # send_message("+19193353153")
+      # send_message("+12482557341")
     else
       console.log "Not sending message as it has not been 15 minutes since the last"

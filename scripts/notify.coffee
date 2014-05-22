@@ -26,12 +26,13 @@ module.exports = (robot) ->
   @token = process.env.HUBOT_SMS_TOKEN
   @from  = process.env.HUBOT_SMS_FROM
 
-  @last_message = new Date();
+  @last_message = new Date(0);
 
   send_message = =>
     auth = new Buffer(@sid + ':' + @token).toString("base64")
     data = QS.stringify From: @from, To: "+12314925380", Body: "You have a new message on stryder support"
 
+    @last_message = new Date();
     robot.http("https://api.twilio.com")
       .path("/2010-04-01/Accounts/#{@sid}/Messages.json")
       .header("Authorization", "Basic #{auth}")

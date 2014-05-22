@@ -33,7 +33,7 @@ module.exports = (robot) ->
 
     console.log 'a'
     robot.http("https://api.twilio.com")
-      .path("/2010-04-01/Accounts/#{@sid}/Messages.json")
+      .path("/2010-04-01/Accounts/#{sid}/Messages.json")
       .header("Authorization", "Basic #{auth}")
       .header("Content-Type", "application/x-www-form-urlencoded")
       .post(data) (err, res, body) ->

@@ -25,7 +25,6 @@ module.exports = (robot) ->
   @sid   = process.env.HUBOT_SMS_SID
   @token = process.env.HUBOT_SMS_TOKEN
   @from  = process.env.HUBOT_SMS_FROM
-  console.log @sid
 
   send_message = =>
     auth = new Buffer(@sid + ':' + @token).toString("base64")
@@ -36,18 +35,12 @@ module.exports = (robot) ->
       .header("Authorization", "Basic #{auth}")
       .header("Content-Type", "application/x-www-form-urlencoded")
       .post(data) (err, res, body) ->
-        console.log 'message sent?'
         if err
           console.log err
         else if res.statusCode is 201
-          # json = JSON.parse(body)
-          # callback null, body
           console.log body
         else
-          # json = JSON.parse(body)
-          # callback body.message
           console.log body
 
   robot.hear /.+/, (msg) ->
-    console.log 'heard'
     send_message()

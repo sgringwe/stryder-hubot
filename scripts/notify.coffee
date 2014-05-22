@@ -45,10 +45,8 @@ module.exports = (robot) ->
         else
           console.log body
 
-  robot.hear /.+/, (msg) ->
+  robot.hear /.+/, (msg) =>
     now = new Date()
-    console.log @last_message
-    console.log now
     diff = now - (@last_message || 0)
     console.log "Diff is #{diff}"
     minutes_since_last = Math.floor(diff / 1000 / 60);

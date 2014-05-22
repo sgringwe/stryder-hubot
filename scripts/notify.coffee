@@ -26,6 +26,8 @@ module.exports = (robot) ->
   @token = process.env.HUBOT_SMS_TOKEN
   @from  = process.env.HUBOT_SMS_FROM
 
+  @last_message = new Date();
+
   send_message = =>
     auth = new Buffer(@sid + ':' + @token).toString("base64")
     data = QS.stringify From: @from, To: "+12314925380", Body: "You have a new message on stryder support"
@@ -43,4 +45,9 @@ module.exports = (robot) ->
           console.log body
 
   robot.hear /.+/, (msg) ->
-    send_message()
+    now = new Date();
+    diff = now - @last_message
+    minutes_since_last = Math.floor(diff / 1000 / 60);
+
+    if minutes_since_last > 15
+      send_message()

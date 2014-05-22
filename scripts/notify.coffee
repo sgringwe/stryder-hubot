@@ -16,7 +16,7 @@
 # Author:
 #   sgringwe
 
-jsdom = require 'jsdom'
+# jsdom = require 'jsdom'
 HTTP = require "http"
 QS = require "querystring"
 

@@ -28,7 +28,6 @@ module.exports = (robot) ->
   console.log @sid
 
   send_message = =>
-    log @sid
     auth = new Buffer(@sid + ':' + @token).toString("base64")
     data = QS.stringify From: @from, To: "+12314925380", Body: "You have a new message on stryder support"
 
@@ -50,4 +49,5 @@ module.exports = (robot) ->
           console.log body
 
   robot.hear /.+/, (msg) ->
+    console.log 'heard'
     send_message()

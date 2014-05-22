@@ -26,7 +26,7 @@ module.exports = (robot) ->
   @token = process.env.HUBOT_SMS_TOKEN
   @from  = process.env.HUBOT_SMS_FROM
 
-  @last_message = new Date(0);
+  @last_message = 0;
 
   send_message = =>
     auth = new Buffer(@sid + ':' + @token).toString("base64")
@@ -50,5 +50,8 @@ module.exports = (robot) ->
     diff = now - @last_message
     minutes_since_last = Math.floor(diff / 1000 / 60);
 
+    console.log "Diff is #{minutes_since_last} minutes"
     if minutes_since_last > 15
       send_message()
+    else
+      console.log "Not sending message as it has not been 15 minutes since the last"

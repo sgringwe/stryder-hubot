@@ -29,8 +29,9 @@ module.exports = (robot) ->
   send_message = =>
     console.log 'sending message...'
     auth = new Buffer(sid + ':' + token).toString("base64")
-    data = QS.stringify From: from, To: "+12314925380", Body: message
+    data = QS.stringify From: from, To: "+12314925380", Body: "You have a new message on stryder support"
 
+    console.log 'a'
     robot.http("https://api.twilio.com")
       .path("/2010-04-01/Accounts/#{@sid}/Messages.json")
       .header("Authorization", "Basic #{auth}")
